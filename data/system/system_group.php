@@ -1,0 +1,1 @@
+<?php exit;?>{"1":{"group_id":1,"name":"public","parent_id":"","children":"","config":{"size_max":0,"size_use":0},"path":"bc2c519b62df7ccd2752338671a5c692","create_time":1443789295}}
