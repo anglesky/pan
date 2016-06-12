@@ -1,0 +1,52 @@
+<div class='content_box'>
+    <div class='title'>
+        <div class="titleinfo">
+	        {{if !group_info.name}}
+	        <i class="font-icon icon-plus"></i>{{LNG.system_group_create}}
+	        {{else}}
+	        <i class="font-icon icon-pencil"></i>{{group_info.name}}
+	        {{/if}}
+		</div>
+		{{if group_info.name}}
+		<div class="share_view_info">{{group_info.config.size_use}}/{{group_info.config.size_max}}</div>
+		{{/if}}
+    </div>
+    <div class='content_info'>
+    	<div class="input_line">
+			<span class="input_title">{{LNG.system_group_name}}:</span>
+			<input id="name" type="text" name="name" value="{{group_info.name}}" />
+			{{if group_info.name}}
+			<a href="javascript:void(0);" class="font-icon-label dlg_goto_path"><i class="font-icon icon-folder-open"></i></a>
+			{{else}}
+			<i class="desc">{{LNG.name}}</i>
+			{{/if}}
+			<div style="clear:both"></div>
+		</div>
+		<div class="input_line size_max_set">
+			<span class="input_title">{{LNG.space_size}}:</span>
+			<input id="size_max" type="text" name="size_max" value="{{group_info.config.size_max}}" />
+			<i class="desc label label-default" style="color:#698ebf;background:#E9F3F9;"></i>
+			<div style="clear:both"></div>
+		</div>
+		<div class="input_line select_parent_content">
+			<span class="input_title">{{LNG.system_group_father}}:</span>
+			<input id="group_parent" type="hidden" name="parent_id" value="{{group_info.parent_id}}" />
+			<button class="btn btn-default btn-sm" type="button">
+			    <i class="font-icon icon-group"></i><span class="group_title pl-10"></span>
+			</button>
+			<ul class="select_group hidden ztree" id="group_parent_select"></ul>
+			<div style="clear:both"></div>
+		</div>
+	</div>
+
+	<div class="share_action">		
+		{{if !group_info.name}}
+		<button type="button" class="btn btn-primary" id="system_save">{{LNG.button_add}}</button>
+		<button type="button" class="btn btn-primary" id="system_save_goon_add">{{LNG.button_save_and_add}}</button>
+		{{else}}
+		<button type="button" class="btn btn-primary" id="system_save">{{LNG.button_save}}</button>
+		<a type="button" href="javascript:void(0);" class="remove_button">{{LNG.button_del}}</a>
+		{{/if}}
+	</div>
+</div>
+

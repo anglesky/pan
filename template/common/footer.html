@@ -1,0 +1,16 @@
+<div class="common_footer">
+	<?php 
+		if(is_wap()){
+			echo '<span class="pr-10"><a href="index.php?explorer/index">'.$L['wap_page_phone'].'</a>|'.
+				 '<a href="index.php?explorer/index&use_desktop=1">'.$L['wap_page_pc'].'</a></span>';
+		}
+		if(isset($GLOBALS['config']['settings']['copyright'])){
+			echo $GLOBALS['config']['settings']['copyright'];
+		}else{
+			echo $L['copyright_pre'].' v'.KOD_VERSION.' | '.$L['copyright_info'];
+			if(ACT !='login'){
+				echo '<a href="javascript:core.copyright();" class="icon-info-sign copyright_bottom"></a>';
+			}			
+		}
+	?>
+</div>

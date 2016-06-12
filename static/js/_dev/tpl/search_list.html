@@ -1,0 +1,22 @@
+{{each folderlist as v i}}
+    <tr class='list folder' data-path='{{v.path}}' data-type='folder' data-size='0'>
+        <td class='name'><a href='javascript:void(0);' title='{{LNG.open}}{{v.name}}'>{{v.name}}</a></td>
+        <td class='type'>{{LNG.folder}}</td>
+        <td class='size'>0</td>
+        <td class='path'><a href='javascript:void(0);' title='{{LNG.goto}}{{v.path}}'>{{v.path}}</a></td>
+    </tr>
+{{/each}}
+{{each filelist as v i}}
+<tr class='list file'
+    data-path='{{v.path}}' 
+    data-type='{{v.ext}}' 
+    data-size='{{v.size}}'>
+    <td class='name' data-line="{{if v.search_line}}{{v.search_line}}{{/if}}">
+        <a href='javascript:void(0);' title='{{LNG.open}}{{v.name}}'>{{v.name}}</a> 
+        {{if v.search_line}}<span>&nbsp;({{v.search_line}})</span>{{/if}}
+    </td>
+    <td class='type'>{{v.ext}}</td>
+    <td class='size'>{{v.size}}</td>
+    <td class='path'><a href='javascript:void(0);' title='{{LNG.goto}}{{v.path}}'>{{v.path}}</a></td>
+</tr>
+{{/each}}

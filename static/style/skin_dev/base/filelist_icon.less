@@ -1,0 +1,100 @@
+/* --------------------------文件图标样式--------------------- */
+div.fileList_icon > .file,.frame-main .bindary_box .title{
+    img{vertical-align:middle;max-width:64px;max-height:64px;margin-left: 8px;background:#fff;}
+    @icon_path:"../../../images/file_icon/file_64/";
+    .file_list_icon_config(@icon_path);
+}
+.frame-left .ztree li .file{background:url("@{img_files_list}file.png") no-repeat;}
+.frame-left .ztree li .tree_icon{background:url("@{img_files_list}file.png") no-repeat;}
+div.fileList_list .file,.frame-left .ztree li{    
+    @icon_path:"../../../images/file_icon/file_16/";
+    .file_list_icon_config(@icon_path);
+    .tree_icon();
+}
+
+/*读写权限区分*/
+div.fileList_icon > .file,div.fileList_list .file,.frame-left .ztree li a{
+    &.file_not_writeable{.opacity(80);color:#08c;}//08c f33 a00
+    &.file_not_readable,&.file_not_readable.file_not_writeable{.opacity(40);color:#a00;}
+}
+
+.file_list_icon_config(@icon_path){
+    .vb,.vbs,.reg,.pl,.pm,.cgi,.as,.clj,.cbl,.cfm,.d,.diff,.dot,.ejs,.erl,.ftl,
+    .go,.hs,.hbs,.haml,.erb,.jade,.json,.jq,.jsx,.ji,.tex,.lisp,.ls,.lsl,.lua,.lp,.matlab,.mel,.r,.yaml
+    {background-image:url("@{icon_path}code.png");}
+    .folder{background-image:url("@{icon_path}folder.png");}
+    .txt,.md,.markdown,.log,.rst{background-image:url("@{icon_path}txt.png");}
+    .html,.htm,.url,.tpl,.lnk,.haml,.shtml,.webloc,.hta{background-image: url("@{icon_path}html.png");}
+    .css,.less,.sass{background-image: url("@{icon_path}css.png");}
+    .js,.coffee{background-image: url("@{icon_path}js.png");}
+    .xml,.config,.manifest,.xaml,.csproj,.vbproj{background-image: url("@{icon_path}xml.png");}
+    .cs,.asp,.aspx{background-image: url("@{icon_path}cs.png");}
+    .java,.jsp{background-image: url("@{icon_path}java.png");}
+    .sql{background-image: url("@{icon_path}sql.png");}
+    .oexe{background-image: url("@{icon_path}oexe.png");}
+
+    .php{background-image: url("@{icon_path}php.png");}
+    .py{background-image: url("@{icon_path}py.png");}
+    .rb{background-image: url("@{icon_path}rb.png");}        
+    .mm,.cc,.cxx,.cpp,.c,.m{background-image: url("@{icon_path}cpp.png");}
+    .h,.hpp,.hh,.pch{background-image: url("@{icon_path}h.png");}
+    .png,.jpg,.jpeg,.bmp,.gif{background-image: url("@{icon_path}jpg.png");}
+
+    .asm{background-image: url("@{icon_path}asm.png");}       
+    .Makefile,.makefile,.GNUmakefile,.makefile,.OCamlMakefile,.make
+    {background-image: url("@{icon_path}makefile.png");}
+    .sln{background-image: url("@{icon_path}sln.png");}
+
+    .pdf{background-image: url("@{icon_path}pdf.png");}
+    .psd{background-image: url("@{icon_path}psd.png");}
+    .flv,.f4v{background-image: url("@{icon_path}flv.png");}
+    .fla{background-image: url("@{icon_path}fla.png");}
+    .swf{background-image: url("@{icon_path}swf.png");}
+    .air{background-image: url("@{icon_path}air.png");}
+    .svg{background-image: url("@{icon_path}svg.png");}
+    .ai{background-image: url("@{icon_path}ai.png");}
+
+    .chm{background-image: url("@{icon_path}chm.png");}
+    .numbers{background-image: url("@{icon_path}numbers.png");}
+    .pages{background-image: url("@{icon_path}pages.png");}
+    .ipa{background-image: url("@{icon_path}ipa.png");}
+    .iso,.dvd{background-image: url("@{icon_path}iso.png");}
+    .dmg{background-image: url("@{icon_path}dmg.png");}
+    .key{background-image: url("@{icon_path}key.png");}
+    .package,.framework{background-image: url("@{icon_path}package.png");}
+
+    .zip,.apk,.tar,.gzip,.jar,.cxr,.tar,.gz,.cab,.tbz,.tbz2,.bz2{background-image: url("@{icon_path}zip.png");}
+    .rar{background-image: url("@{icon_path}rar.png");}
+    .dll{background-image: url("@{icon_path}dll.png");}
+    .exe,.bin{background-image: url("@{icon_path}exe.png");}
+    .ttf,.otf,.eot,.woff,.tiff,.ttc{background-image: url("@{icon_path}ttf.png");}
+    .bat,.cmd,.sh,.bash,.bashrc{background-image: url("@{icon_path}cmd.png");}
+
+    .ini,.conf,.meta,.gitignore,.plist,.htaccess,.localized,.xcscheme,
+    .storyboard,.xib,.strings,.pbxproj{background-image: url("@{icon_path}ini.png");}
+    .mp3,.wma,.mp2,.mid,.aac,.wav,.m4a{background-image: url("@{icon_path}mp3.png");}
+    .avi,.rm,.rmvb,.mpg,.mkv,.wmv,.mov,.mp4{background-image: url("@{icon_path}avi.png");}
+    .doc,.docx,.wps{background-image: url("@{icon_path}doc.png");}
+    .xls,.xlsx,.csv{background-image: url("@{icon_path}xls.png");}
+    .ppt,.pptx{background-image: url("@{icon_path}ppt.png");}
+
+    .recycle{background-image: url("@{icon_path}recycle_image.png");}
+    .share{background-image: url("@{icon_path}share_image.png");}
+}
+
+.tree_icon(){
+    .user{background-image: url("@{img_files_others}user.png");}
+    .userSelf{background-image: url("@{img_files_others}userSelf.png");}
+    .recycle{background-image: url("@{img_files_others}recycle.png");}
+    .share{background-image: url("@{img_files_others}user.png");}
+    .groupSelf{background-image: url("@{img_files_others}groupSelf.png");}
+    .groupSelfOwner{background-image: url("@{img_files_others}groupSelfOwner.png");}
+    .groupGuest{background-image: url("@{img_files_others}groupGuest.png");}
+    .group{background-image: url("@{img_files_others}groupGuest.png");}
+
+    .groupSelfRoot{background-image: url("@{img_files_others}groupSelfRoot.png");}
+    .groupRoot{background-image: url("@{img_files_others}groupRoot.png");}
+    .groupPublic{background-image: url("@{img_files_others}groupPublic.png");}
+    .treeSelf{background-image: url("@{img_files_others}treeSelf.png");}
+    .treeFav{background-image: url("@{img_files_others}treeFav.png");}
+}

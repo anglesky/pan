@@ -1,0 +1,115 @@
+@import "./base/base.less";
+@metro:#5579BA;//#17b5f4
+@metro_green:#0EA460;
+@metro_purple:#8D3CC4;
+@metro_pink:#DC4FAD;
+@metro_orange:#FF8F32;
+
+
+@main_color:@metro;
+/*-debug-replace-*/
+
+body{
+	position: absolute;top: 0px;left: 0px;bottom: 0px;right: 0px;
+	.btn-group .btn { border-radius: 0px;}
+	//common 
+	.frame-main .frame-right .dropdown-menu{
+		a:hover,.this a{background:@main_color;}
+	}
+	.topbar{
+		background:@main_color;
+		.content .topbar_menu{
+			border-color:darken(@main_color,3%);
+			&.this,&:hover{background:darken(@main_color,7%);border-color:darken(@main_color,7%);}
+		}
+	}
+	.aui_outer{
+		.aui_state_focus .aui_title,.aui_title{background:@main_color;}
+		.aui_buttons button.aui_state_highlight{
+			background:@main_color;
+			&:hover{background:lighten(@main_color,5%);}
+			&:active{background:darken(@main_color,20%);}
+		}
+		.aui_min:hover, .aui_max:hover{background:darken(@main_color,15%);}
+		.aui_min:active, .aui_max:active{background:darken(@main_color,35%);}
+	}
+	#selContainer{/*选择框*/
+	    border:1px solid darken(@main_color,15%);
+	    background-color:@main_color;
+	}
+
+	//文件列表
+	.file_select{background:@main_color;border-color:transparent;color:#fff;border-radius:0px;}
+	.frame-main .frame-left{
+		background: #fafafa;
+		.ztree li a{
+			border-color:transparent;
+		    height: 23px;line-height: 23px;			
+			&:hover{background:#ffd987;}
+			&.curSelectedNode,&.curSelectedNode:hover{
+			    .file_select();
+			}
+		}
+	}
+	.fileList_list .file2 {background: #fff3d9;}
+	.fileList_icon .file, .fileList_list .file{border-radius:0;.transition(all 0.2s);}
+	.fileList_icon .file.select, .fileList_icon .file.selectDragTemp,
+	.fileList_list .file.select, .fileList_list .file.selectDragTemp{
+		.file_select();
+	}
+	.fileList_list .file.select, .fileList_list .file.selectDragTemp{
+		border-bottom: 1px solid lighten(@main_color,5%) !important;
+	}
+	.fileList_icon .file.hover,.fileList_list .file.hover,{
+		color:#444;background: #ffd987;border-radius:0;border-color:transparent;
+		&.select,.selectDragTemp{.file_select();}
+	}
+
+	//right_menu
+	.context-menu-list{
+		box-shadow: 0 10px 40px rgba(0,0,0,0.4);border-radius: 0;
+		.context-menu-item{
+			line-height: 25px;height: 25px;padding: 0 15px 0 20px;
+			&.hover,&.selected.hover{background:@main_color;}
+		}
+	}
+
+	//设置
+	#body{
+		.menu_left,.app_menu_left{background:darken(@main_color,5%);
+			h1{color: #fff;font-weight: 400;}
+			.setting a{color:#fff;}
+			.setting a:hover{background:darken(@main_color,7%);}
+			.setting a.selected{background:darken(@main_color,10%);border-left:4px solid #fff;color:#fff;}
+		}
+		.main .nav a:hover,.main .nav a.this{background:@main_color;border:1px solid @main_color;}
+	}
+
+
+	//编辑器 tab
+	.edit_tab{
+	    @height_color:#63acff;
+	    /*tab*/
+	    .tabs{
+	        border-bottom: 1px solid #ddd;
+	        /*border-bottom: 2px solid @height_color;height:28px;*/
+	        .tab{background:#eee;color:#666;}
+	        .close{.opacity(5);text-shadow:none;color:#fff;}
+	        .tab.hover{background:#eee;}
+
+	        .add{background:#ddd;border: 1px solid #ddd;color:#666;}
+	        .tab.this{background:@height_color;
+	            border-left: 1px solid @height_color;margin-left: -1px;
+	        	border-right-color:@height_color;
+	        } 
+
+	        .tab.this .close{.opacity(40);}
+	        .tab.hover .close{.opacity(70);}
+	        /*.tab.this.hover .close{color:#fff;}*/
+	        .edit_changed a.close{.opacity(100);}
+	        .tab.this.edit_changed a.close{color:#fff;}
+	    }
+	    .draggable-dragging{background:#ddd;border-left: 3px solid @height_color;margin-left:-3px;}
+	}
+}
+
