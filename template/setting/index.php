@@ -27,7 +27,7 @@
 				<a id="fav"><i class="font-icon icon-star"></i><?php echo $L['setting_fav'];?></a>
 				<a id="player"><i class="font-icon icon-music"></i><?php echo $L['setting_player'];?></la>
 				<a id="help"><i class="font-icon icon-question"></i><?php echo $L['setting_help'];?></a>
-				<a id="about"><i class="font-icon icon-info-sign"></i><?php echo $L['setting_about'];?></a>
+				<!-- <a id="about"><i class="font-icon icon-info-sign"></i><?php echo $L['setting_about'];?></a> -->
 			</ul>
 		</div>
 		<div class='main'></div>
