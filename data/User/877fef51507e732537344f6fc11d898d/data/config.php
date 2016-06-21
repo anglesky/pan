@@ -1,1 +1,1 @@
-<?php exit;?>{"list_type":"icon","list_sort_field":"name","list_sort_order":"up","theme":"mac","wall":"2","file_repeat":"rename","recycle_open":"1","musictheme":"mp3player","movietheme":"webplayer"}
+<?php exit;?>{"list_type":"icon","list_sort_field":"name","list_sort_order":"up","theme":"mac","wall":"2","file_repeat":"rename","recycle_open":"1","musictheme":"mp3player","movietheme":"webplayer","resize_config":"{&quot;filename&quot;:250,&quot;filetype&quot;:80,&quot;filesize&quot;:80,&quot;filetime&quot;:215,&quot;left_tree_width&quot;:167}"}
