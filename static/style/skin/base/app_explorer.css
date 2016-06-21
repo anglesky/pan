@@ -492,6 +492,7 @@ div.fileList_list .file .groupSelf,.frame-left .ztree li .groupSelf { background
 div.fileList_list .file .groupSelfOwner,.frame-left .ztree li .groupSelfOwner { background-image: url("../../../images/file_icon/icon_others/groupSelfOwner.png");}
 div.fileList_list .file .groupGuest,.frame-left .ztree li .groupGuest { background-image: url("../../../images/file_icon/icon_others/groupGuest.png");}
 div.fileList_list .file .group,.frame-left .ztree li .group { background-image: url("../../../images/file_icon/icon_others/groupGuest.png");}
+div.fileList_list .file .pubGroup,.frame-left .ztree li .pubGroup { background-image: url("../../../images/file_icon/file_16/folder_mac.png");}
 div.fileList_list .file .groupSelfRoot,.frame-left .ztree li .groupSelfRoot { background-image: url("../../../images/file_icon/icon_others/groupSelfRoot.png");}
 div.fileList_list .file .groupRoot,.frame-left .ztree li .groupRoot { background-image: url("../../../images/file_icon/icon_others/groupRoot.png");}
 div.fileList_list .file .groupPublic,.frame-left .ztree li .groupPublic { background-image: url("../../../images/file_icon/icon_others/groupPublic.png");}

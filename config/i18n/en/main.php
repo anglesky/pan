@@ -26,6 +26,7 @@ $L = array(
 
 	"kod_group"					=> "Group",
 	"my_kod_group"				=> "My Group",
+	"kod_pub_group" 			=> "Public Group",
 	"space_tips_default"		=> "(GB) 0 no limit",
 	"space_tips_full"			=> "No limit",
 	"space_size"				=> "Space Size",

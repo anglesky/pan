@@ -147,6 +147,9 @@ class explorer extends Controller{
 		if (isset($this->in['type']) && $this->in['type']=='init'){
 			$this->_tree_init($app);
 		}
+
+		//共享资源池:
+		$is_pub_group = false;
 		//根树目录请求
 		switch(trim(rawurldecode($this->in['path']))){
 			case "{tree_self_fav}":
@@ -156,9 +159,17 @@ class explorer extends Controller{
 				show_json($this->_group_self(),true);
 				break;
 			case "{tree_group_all}":
-				show_json($this->_group_tree('1'),true);
+				show_json($this->_group_tree('1', $is_pub_group),true);
+				break;
+			case "{tree_group_public}":
+				$is_pub_group = true;
+				show_json($this->_group_tree('1', $is_pub_group),true);
 				break;
 			default:break;
+		}
+
+		if (isset($this->in['tree_icon']) && $this->in['tree_icon']=='pubGroup') {
+			$is_pub_group = true;
 		}
 
 		//树目录组处理	
@@ -166,7 +177,7 @@ class explorer extends Controller{
 			!strstr(trim(rawurldecode($this->in['path']),'/'),'/') &&
 			($GLOBALS['path_type'] == KOD_GROUP_PATH||
 			$GLOBALS['path_type'] == KOD_GROUP_SHARE)) {
-			$list = $this->_group_tree($GLOBALS['path_id']);
+			$list = $this->_group_tree($GLOBALS['path_id'], $is_pub_group, false);
 			show_json($list,true);
 			return;
 		}
@@ -368,11 +379,22 @@ class explorer extends Controller{
 				'open'      => true,
 				'isParent'  => true
 			),
+			'pub_group'=>array(
+			    'name'		=> $this->L['kod_pub_group'],
+			    'menuType'  => "menuTreeGroupRoot",
+			    'tree_icon' => "pubGroup",
+			    'children'  => $this->_group_tree('1',true),
+
+			    'path' 		=> '{tree_group_public}',
+			    'type'      => 'folder',
+			    'open'      => true,
+			    'isParent'  => true
+			),
 			'group'=>array(
 				'name'		=> $this->L['kod_group'],
 				'menuType'  => "menuTreeGroupRoot",
 				'tree_icon' => "groupRoot",
-				'children'  => $this->_group_tree('1'),
+				'children'  => $this->_group_tree('1',false),
 
 				'path' 		=> '{tree_group_all}',
 				'type'      => 'folder',
@@ -418,14 +440,33 @@ class explorer extends Controller{
 	}
 
 	//session记录用户可以管理的组织；继承关系
-	private function _group_tree($node_id){//获取组织架构的用户和子组织；为空则获取根目录
+	//$is_pub_group 为新增参数,用于记录"共享资源池",共享资源池只显示到二级文件夹,而且不显示用户
+	//$is_init是否为初始化
+	private function _group_tree($node_id, $is_pub_group, $is_init = true){//获取组织架构的用户和子组织；为空则获取根目录
 		$group_sql = system_group::load_data();
 		$groups = $group_sql->get(array('parent_id',$node_id));
-		$group_list = $this->_make_node_list($groups);
+		
+		if ($is_pub_group&&!$is_init) {
+			//向上找两代
+			$pG1 = $group_sql->get(array('group_id', $node_id));
+			if(isset($pG1)){
+				$pG1 = array_slice($pG1,0,1);
+				$pG2 = $group_sql->get(array('group_id', $pG1[0]['parent_id']));
+				if(isset($pG2)){
+					$pG2 = array_slice($pG2,0,1);
+					$pG3 = $group_sql->get(array('group_id', $pG2[0]['parent_id']));
+					if($pG3){
+						$groups = false;
+					}
+				}
+			}
+		}
+		
+		$group_list = $this->_make_node_list($groups, $is_pub_group);
 
 		//user
 		$user_list = array();
-		if($node_id !='1'){//根组不显示用户
+		if($node_id !='1' && !$is_pub_group){//根组不显示用户,共享资源池不显示用户
 			$user = system_member::get_user_at_group($node_id);
 			foreach($user as $key => $val){
 				$tree_icon = 'user';
@@ -454,9 +495,10 @@ class explorer extends Controller{
 			if($group_id=='1') continue;
 			$groups[] = system_group::get_info($group_id);
 		}
-		return $this->_make_node_list($groups);
+		return $this->_make_node_list($groups, false);
 	}
-	private function _make_node_list($list){
+
+	private function _make_node_list($list, $is_pub_group){
 		$group_list = array();
 		if(!is_array($list)){
 			return $group_list;
@@ -471,6 +513,11 @@ class explorer extends Controller{
 				$tree_icon = 'groupSelf';
 			}else{
 				$tree_icon = 'groupSelfOwner';
+			}
+
+			//共享资源组要控制图标
+			if ($is_pub_group) {
+				$tree_icon = 'pubGroup';
 			}
 			$has_children = true;
 			$user_list = system_member::get_user_at_group($val['group_id']);

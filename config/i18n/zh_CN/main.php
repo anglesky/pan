@@ -27,6 +27,7 @@ $L= array(
 
 	"kod_group"					=> "组织架构",
 	"my_kod_group"				=> "我的组织架构",
+	"kod_pub_group" 			=> "资源共享池",
 	"space_tips_default"		=> "(GB) 0则不限制",
 	"space_tips_full"			=> "不限制",
 	"space_size"				=> "空间大小",
