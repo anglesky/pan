@@ -226,7 +226,8 @@ define(function(require, exports) {
 					if($.inArray(treeNode.path,[
 						"{tree_self_fav}",
 						"{tree_group_self}",
-						"{tree_group_all}"
+						"{tree_group_all}",
+						"{tree_group_public}"
 						])!=-1){
 						return;
 					}
