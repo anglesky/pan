@@ -24,7 +24,8 @@ class explorer extends Controller{
 			$dir = _DIR_CLEAR($_SESSION['this_path']);
 		}else{
 			$dir = '/';//首次进入系统,不带参数
-			if ($GLOBALS['is_root']) $dir = WEB_ROOT;
+			//管理员进入也只能查看云存储相关文件及文件夹
+			// if ($GLOBALS['is_root']) $dir = WEB_ROOT;
 		}
 		$dir = rtrim($dir,'/').'/';
 		$this->assign('dir',$dir);

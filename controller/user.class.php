@@ -52,9 +52,13 @@ class user extends Controller{
 				$this->logout();
 			}
 			if ($this->user['role'] == '1') {
-				define('MYHOME',USER.'home/');
-				define('HOME','');
-				$GLOBALS['web_root'] = WEB_ROOT;//服务器目录
+//				define('MYHOME',USER.'home/');
+//				define('HOME','');
+//				$GLOBALS['web_root'] = WEB_ROOT;//服务器目录
+                //管理员进入也只能查看云存储相关文件及文件夹
+                define('MYHOME','/');
+                define('HOME',USER.'home/');
+                $GLOBALS['web_root'] = str_replace(WEB_ROOT,'',HOME);//从服务器开始到用户目录
 				$GLOBALS['is_root'] = 1;
 			}else{
 				define('MYHOME','/');
