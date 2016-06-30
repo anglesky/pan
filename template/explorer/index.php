@@ -15,7 +15,7 @@
 	
 	<link rel="stylesheet" href="<?php echo STATIC_PATH;?>style/skin/base/app_explorer.css?ver=<?php echo KOD_VERSION;?>"/>
 	<link rel="stylesheet" href="<?php echo STATIC_PATH;?>style/skin/<?php echo $config['user']['theme'];?>.css?ver=<?php echo KOD_VERSION;?>" id='link_css_list'/>
-	
+	<script src="<?php echo STATIC_PATH;?>js/lib/jquery-1.8.0.min.js?ver=<?php echo KOD_VERSION;?>"></script>
 </head>
 
 <body style="overflow:hidden;" oncontextmenu="return core.contextmenu();" id="page_explorer">
@@ -171,6 +171,7 @@
 	</div><!-- / frame-main end-->
 <?php include(TEMPLATE.'common/footer.html');?>
 <script src="<?php echo STATIC_PATH;?>js/lib/seajs/sea.js?ver=<?php echo KOD_VERSION;?>"></script>
+<script src="<?php echo STATIC_PATH;?>js/lib/md5.js?ver=<?php echo KOD_VERSION;?>"></script>
 <script src="./index.php?user/common_js&type=explorer&id=<?php echo rand_string(8);?>"></script>
 <script type="text/javascript">
 	G.this_path = "<?php echo clear_html($dir);?>";

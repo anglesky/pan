@@ -1071,11 +1071,50 @@ class explorer extends Controller{
 			}
 		}
 		$repeat_action = $this->config['user']['file_repeat'];
+
+		$md5 = isset($_REQUEST["chunkMD5"]) ? (string)$_REQUEST['chunkMD5'] : (string)$_COOKIE['file_md5'];
 		//分片上传
+		$temp_dir = USER_TEMP . $md5 . '/';
+		// mk_dir($temp_dir);
+		// if (!is_writeable($temp_dir)) show_json($this->L['no_permission_write'],false);
+		upload_chunk('file',$save_path,$temp_dir,$repeat_action,$md5);
+	}
+
+	/**
+	* 上传前check文件的MD5
+	*/
+	public function md5Check(){
+		//todo 模拟持久层查询
+		$dataArr = array(
+			'b0201e4d41b2eeefc7d3d355a44c6f5a' => 'kazaff2.jpg'
+		);
+
+		if(isset($dataArr[$_POST['md5']])){
+			die('{"ifExist":1, "path":"'.$dataArr[$_POST['md5']].'"}');
+		}
+		die('{"ifExist":0}');
+	}
+
+	/**
+	* 分片验证是否已经上传,用于断点续传
+	*/
+	public function chunkCheck(){
+		$chunkIndex = $_POST['chunkIndex'];
+		$md5 = isset($_REQUEST["chunkMD5"]) ? (string)$_REQUEST['chunkMD5'] : (string)$_COOKIE['file_md5'];
+
 		$temp_dir = USER_TEMP;
-		mk_dir($temp_dir);
-		if (!is_writeable($temp_dir)) show_json($this->L['no_permission_write'],false);
-		upload_chunk('file',$save_path,$temp_dir,$repeat_action);
+		if (!file_exists($temp_dir)) {
+			mkdir($temp_dir);
+		}
+		$temp_dir .= $md5;
+		if (!file_exists($temp_dir)) {
+			mkdir($temp_dir);
+		}
+		$target = $temp_dir . '/' . $md5 . '.part' . $chunkIndex;
+		if(file_exists($target) && filesize($target) == $_POST['size']){
+			die('{"ifExist":1}');
+		}
+		die('{"ifExist":0}');
 	}
 
 	//分享根目录

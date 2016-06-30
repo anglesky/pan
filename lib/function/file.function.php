@@ -804,7 +804,7 @@ function get_post_max(){
  * 文件上传处理。大文件支持分片上传
  * upload('file','D:/www/');
  */
-function upload_chunk($fileInput, $path = './',$temp_path,$repeat_action){
+function upload_chunk($fileInput, $path = './',$temp_path,$repeat_action,$chunk_name){
 	space_size_use_check();//空间检测
 	global $L;
 	$file = $_FILES[$fileInput];
@@ -813,7 +813,7 @@ function upload_chunk($fileInput, $path = './',$temp_path,$repeat_action){
 	if (!isset($file)) show_json($L['upload_error_null'],false);
 	$file_name = iconv_system($file['name']);
 	if ($chunks>1) {//并发上传，不一定有前后顺序
-		$temp_file_pre = $temp_path.md5($temp_path.$file_name).'.part';
+		$temp_file_pre = $temp_path.$chunk_name.'.part';
 		if (get_filesize($file['tmp_name']) ==0) {
 			show_json($L['upload_success'],false,'chunk_'.$chunk.' error!');
 		}
@@ -841,6 +841,9 @@ function upload_chunk($fileInput, $path = './',$temp_path,$repeat_action){
 				}
 				flock($out, LOCK_UN);
 				fclose($out);
+
+				$str_del = 'cd '.USER_TEMP.';rm -Rf '.$chunk_name;
+				exec($str_del);
 			}
 
 			space_size_use_change($save_path);//使用的空间增加
@@ -856,6 +859,9 @@ function upload_chunk($fileInput, $path = './',$temp_path,$repeat_action){
 		show_json($L['upload_exist_skip'],false);
 	}
 	if(move_uploaded_file($file['tmp_name'],$save_path)){
+		$str_del = 'cd '.USER_TEMP.';rm -Rf '.$chunk_name;
+		exec($str_del);
+
 		space_size_use_change($save_path);//使用的空间增加
 		show_json($L['upload_success'],true,iconv_app(_DIR_OUT($save_path)));
 	}else {
