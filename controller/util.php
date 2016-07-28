@@ -95,13 +95,13 @@ function _DIR($before_path){
 				unset($share_cell[0]);
 				if(!$share_info) return false;
 				$path_last = rtrim($share_info['path'],'/').'/'.implode('/',$share_cell);
-				if($info['role']!='1'){
+				// if($info['role']!='1'){
 					$GLOBALS['path_pre'] = USER_PATH.$info['path'].'/home/'.$path_last;
 					$path = $GLOBALS['path_pre'];
-				}else{//admin的共享
-					$GLOBALS['path_pre'] = $share_info['path'];
-					$path = $path_last;
-				}
+				// }else{//admin的共享
+				// 	$GLOBALS['path_pre'] = $share_info['path'];
+				// 	$path = $path_last;
+				// }
 			}
 			break;
 		default:break;
